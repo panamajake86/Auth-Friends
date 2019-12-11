@@ -13,7 +13,7 @@ function AddFriend ({getData}) {
         name: name,
         age: age,
         email: email
-    }
+    };
 
     return (
         <>
@@ -41,7 +41,7 @@ function AddFriend ({getData}) {
                     .then(res => console.log('in button click', res))
                     .catch(err => console.log(err.message));                
                 setName('');
-                setAge('');
+                setAge();
                 setEmail('');
                 getData();
             }}>Add Friend</button>
