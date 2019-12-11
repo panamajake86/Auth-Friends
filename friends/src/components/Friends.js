@@ -11,6 +11,12 @@ class Friends extends React.Component {
         this.getData();
     };
 
+    // componentDidUpdate(prevProps, prevState) {
+    //     if(this.state.friends.length !== prevState.friends.length) {
+    //         this.getData();
+    //     }
+    // };
+
     getData = () => {
         axiosWithAuth()
             .get('/friends')
@@ -22,6 +28,7 @@ class Friends extends React.Component {
     };
 
     render() {
+        console.log("inside render", this.state.friends.length);
         return (
             <div className='Friends'>
                 <h1>My Friends</h1>
@@ -35,7 +42,7 @@ class Friends extends React.Component {
                     </>
                     )
                 })}
-                <AddFriend />>
+                <AddFriend getData={this.getData} />>
             </div>
         )
     }

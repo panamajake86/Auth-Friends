@@ -1,11 +1,11 @@
 import React from "react";
 import { axiosWithAuth } from "../Authorization/axiosWithAuth";
 
-function AddFriend () {
+function AddFriend ({getData}) {
 
-    const [id, setId] = React.useState('');
+    const [id, setId] = React.useState();
     const [name, setName] = React.useState('');
-    const [age, setAge] = React.useState('');
+    const [age, setAge] = React.useState();
     const [email, setEmail] = React.useState('');
 
     const friendly = {
@@ -34,14 +34,16 @@ function AddFriend () {
                 placeholder='Email'
             />
             <button onClick={e => {
+                e.preventDefault();
+                setId(Date.now());
                 axiosWithAuth()
                     .post('/friends', friendly)
                     .then(res => console.log('in button click', res))
-                    .catch(err => console.log(err.message));
-                setId(Date.now());
+                    .catch(err => console.log(err.message));                
                 setName('');
                 setAge('');
                 setEmail('');
+                getData();
             }}>Add Friend</button>
         </>
     )
